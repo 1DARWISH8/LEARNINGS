@@ -1,0 +1,61 @@
+// Create WEB SERVER
+
+// import http module
+
+    const http = require('http')
+    // call createserver()
+    // (req,res) is the request callback function
+    const server = http.createServer((req,res)=>{
+
+        // console.log("type of req",req.method)
+        // console.log("the URL PATH:",req.url)
+        // res.end('this response is from http server')
+
+        // get req handler
+        if(req.method==="GET")
+        {
+            if(req.url==='/users')
+            {
+                res.end("get req for users")
+            }
+            if(req.url==='/users/18')
+            {
+                res.end("get req for 18")
+            }
+        }
+
+        if(req.method==="PUT")
+        {
+            res.end("this is for put req")
+        }
+
+        if(req.method==="POST")
+        {
+            res.end("this is for post req")
+        }
+
+        if(req.method==="DELETE")
+        {
+            res.end("this is for delete req")
+        }
+    })
+    // assign a port number
+    server.listen(5000,()=>console.log("http server created on 5000"))
+
+
+get http://localhost:5000/users
+
+# use triple #to seperate requests
+###
+get  http://localhost:5000/users/18
+
+
+###
+post  http://localhost:5000
+
+###
+
+put http://localhost:5000
+
+###
+delete  http://localhost:5000
