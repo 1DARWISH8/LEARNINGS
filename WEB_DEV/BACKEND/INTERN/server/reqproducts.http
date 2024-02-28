@@ -1,0 +1,28 @@
+# Products
+
+###
+get http://localhost:5000/product-api/products
+
+###
+post http://localhost:5000/product-api/products
+Content-Type: application/json
+
+{
+    "pid":4,
+    "pname":"SAMSUNG Z Fold",
+    "price":"180000"
+}
+
+
+###
+put http://localhost:5000/product-api/products
+Content-Type: application/json
+
+{
+    "pid":3,
+    "pname":"SAMSUNG S24 Ultra-5G",
+    "price":"145000"
+}
+
+###
+delete http://localhost:5000/product-api/products/4
