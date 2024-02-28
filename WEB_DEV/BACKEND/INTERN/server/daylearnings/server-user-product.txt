@@ -1,0 +1,146 @@
+// create express object
+    const exp = require("express")
+    // const app=exp()
+
+    // create mini express app
+    const userApp=exp.Router()
+
+let users =[{id:100,name:"dave"},{id:200,name:"sirish"}]
+
+userApp.get('/users',(req,res)=>
+    {
+     res.send({message:"all users",payload:users})
+    });
+
+    // get user by id
+
+    userApp.get('/users/:id',async(req,res)=>
+    {
+         get url param value
+         params always an object
+         let id=Number(req.params.id)
+         // find user by id
+         let user=users.find(userObj=>userObj.id===id)
+         // if user is not found
+         if (user===undefined)
+         {
+             res.send({message:"user not found"})
+         }
+         else
+         {
+             res.send({message:"user",payload:user})
+         }
+
+    })
+
+    // post req
+
+    userApp.post('/users',(req,res)=>
+    {
+         get user obj  from req
+         let newUser = req.body;
+         //  insert new user in the user list
+         users.push(newUser)
+         // send res
+         res.send({message:"user is added"})
+    })
+    
+
+    //put request 
+    userApp.put('/users',async(req,res)=>
+    {
+        get modified user obj from req
+         let modifiedUser = req.body;
+         // replace old user with modified data
+         let index=users.findIndex(userObj=>userObj.id===modifiedUser.id)
+         users.splice(index,1,modifiedUser)
+         // send res
+         res.send({message:"USER IS MODIFIED"})
+    })
+
+    // delete request
+
+    userApp.delete('/users/:id',(req,res)=>
+    {
+         get url param value
+         params always an object
+         let id=Number(req.params.id)
+         // find id of users to be removed
+         let index=users.findIndex(userObj=>userObj.id===id)
+         // data deletion
+         users.splice(index,1)
+         // send res
+         res.send({message:"User is deleted"})
+    })
+
+
+module.exports=userApp;
+
+
+
+
+PRODUCTS 
+
+
+const exp=require('express')
+const productApp=exp.Router()
+
+let products=
+    [
+        {
+            pid:1,
+            pname:"SAMSUNG S24",
+            price:"90000"
+        },
+        {
+            pid:2,
+            pname:"SAMSUNG S24 plus",
+            price:"95000"
+        },
+        {
+            pid:3,
+            pname:"SAMSUNG S24 Ultra",
+            price:"110000"
+        }
+    ]
+
+
+    // Products
+
+    // display the list of products
+    productApp.get('/products',(req,res)=>
+    {
+        res.send({message:"LIST OF PRODUCTS",payload:products})
+    }
+    )
+
+    // Update the list of products by adding new products
+    productApp.post('/products',(req,res)=>
+    {
+        let newProduct = req.body;
+        products.push(newProduct)
+        res.send("Product is added")
+    })
+
+    // list of products is updated
+    productApp.put('/products',(req,res)=>
+    {
+        let Productchange = req.body;
+        let index = products.findIndex(userObj=>userObj.pid===Productchange.pid)
+        products.splice(index,1,Productchange)
+        res.send("Product is updated")
+    })
+
+    // delete products from list
+    productApp.delete('/products/:pid',(req,res)=>
+    {
+        let pid = Number(req.params.pid)
+
+        let index = products.findIndex(userObj=>userObj.pid===pid)
+
+        products.splice(index,1)
+
+        res.send({message:"product is deleted"})
+    })
+
+module.exports=productApp;
