@@ -1,0 +1,57 @@
+// create express application
+    const exp=require('express')
+    const app=exp()
+
+
+    const userApp = require('./APIS/userApi')
+    const productApp = require('./APIS/productAPI')
+
+    // add body parser
+    app.use(exp.json()) //built-in middleware 
+    // if not used then it becomes undefined
+
+    // execute app according to the path which uses path-level middleware
+    app.use('/user-api',userApp)
+    app.use('/product-api',productApp)
+
+    // create middleware
+    // function test1Middleware(req,res,next)
+    // {
+        // console.log("middleware-1 working")
+        // res.send({message:"something went wrong in middleware1"})
+        // next()
+    // }
+    // function test2Middleware(req,res,next)
+    // {
+    //     console.log("middleware-2 working")
+    //     // res.send({message:"something went wrong in middleware2"})
+    //     next()
+    // }
+
+    // use as app level middleware
+    // app.use(test1Middleware)
+    // app.use(test2Middleware)
+
+    // USER API- api contains routes
+    // USER API(route)
+    
+
+    
+
+
+    // error handling middleware
+
+    function errorHandler(err,req,res,next)
+    {
+        res.send({message:"error occured",payload:err.message})
+    }
+
+    app.use(errorHandler)
+
+// assign port number
+
+app.listen(5000,()=>console.log("http server is listening"))
+
+
+
+
