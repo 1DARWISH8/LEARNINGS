@@ -1,0 +1,42 @@
+get  http://localhost:5000/user-api/users
+
+###
+get  http://localhost:5000/user-api/users/100
+
+
+###
+post http://localhost:5000/user-api/users
+Content-Type: application/json
+
+{
+    "username":"SAMON",
+    "password":"SAMON",
+    "email":"samon@mail.com"
+}
+###
+post http://localhost:5000/user-api/user-login
+Content-Type: application/json
+
+{
+    "username":"DAWSON",
+    "password":"DAWSON"
+}
+
+###
+
+put  http://localhost:5000/user-api/users
+Content-Type: application/json
+
+{
+    "username":"SAMON",
+    "email":"samon@gmail.com"
+}
+
+###
+
+delete http://localhost:5000/user-api/users/65c9c71b915dd2ddfa018022
+
+###
+# private/protected route
+get http://localhost:5000/user-api/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRBV1NPTiIsImlhdCI6MTcwNzQwOTE2MywiZXhwIjoxNzA3NDA5MTkzfQ.0zKSB46Ifoed1UjcjVby6-FVgEuOG55wqwE7BrzHI44
