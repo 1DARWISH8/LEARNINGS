@@ -1,0 +1,39 @@
+get http://localhost:5000/pets-api/pets
+
+###
+post http://localhost:5000/pets-api/pets
+Content-Type: application/json
+
+{
+    "owner":"Henry",
+    "password":"Henry",
+    "pets":
+    [
+        {
+            "petname":"Kal",
+            "type":"Dog",
+            "Breed":"American Akita"
+        }
+    ]
+}
+
+
+###
+put http://localhost:5000/pets-api/pets
+Content-Type: application/json
+
+{
+    "owner":"Henry Cavill",
+    "pets":
+    [
+        {
+            "petname":"Kal",
+            "type":"Dog",
+            "Breed":"American Akita"
+        }
+    ]
+}
+
+
+###
+delete http://localhost:5000/pets-api/pets/Henry
